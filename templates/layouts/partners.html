@@ -1,0 +1,20 @@
+{% load static %}
+<!--brand area start-->
+<div class="brand_area">
+    <div class="container">
+        <div class="col-12">
+            <div class="brand_container owl-carousel ">
+                {% for part in partners %}
+                <div class="brand_list">
+                    <div class="single_brand">
+                        <a target='_blank' href="{{part.link}}">
+                            <img src="{{part.img.url}}" alt="">
+                        </a>
+                    </div> 
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!--brand area end-->
