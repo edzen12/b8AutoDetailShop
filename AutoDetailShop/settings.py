@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'apps.partners',
     'apps.product',
     'apps.users',
+
+    'django_ckeditor_5',
 ]
 
 MIDDLEWARE = [
