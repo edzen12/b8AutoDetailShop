@@ -20,6 +20,10 @@ class Category(models.Model):
     
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = 'категория'
+        verbose_name_plural = 'Категории'
 
 
 class Brand(models.Model):
@@ -34,6 +38,10 @@ class Brand(models.Model):
     
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'бренд'
+        verbose_name_plural = 'Бренды'
 
 
 class Product(models.Model):
@@ -58,6 +66,10 @@ class Product(models.Model):
     
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = 'товар'
+        verbose_name_plural = 'Товары'
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
@@ -67,12 +79,20 @@ class ProductImage(models.Model):
     def __str__(self):
         return self.product.name 
     
+    class Meta:
+        verbose_name = 'фото товара'
+        verbose_name_plural = 'Фотки товаров'
+    
 
 class Attribute(models.Model): 
     name = models.CharField(max_length=100, verbose_name="Атрибут")
 
     def __str__(self):
         return self.name 
+
+    class Meta:
+        verbose_name = 'атрибут'
+        verbose_name_plural = 'Атрибуты'
 
 
 class AttributeValue(models.Model): 
@@ -81,6 +101,10 @@ class AttributeValue(models.Model):
 
     def __str__(self):
         return f"{self.attribute.name} {self.value}"
+    
+    class Meta:
+        verbose_name = 'значение атрибута'
+        verbose_name_plural = 'Значение атрибутов'
 
 
 class ProductVariant(models.Model): 
@@ -88,10 +112,14 @@ class ProductVariant(models.Model):
     attributes = models.ManyToManyField(AttributeValue)
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="цена")
     stock = models.PositiveIntegerField(default=0, verbose_name="Количество товара на складе")
-    sku = models.CharField(max_length=100, unique=True)
+    sku = models.CharField(max_length=100, unique=True, verbose_name="артикул товара")
 
     def __str__(self):
         return f"{self.attribute.name} {self.value}"
+    
+    class Meta:
+        verbose_name = 'вариант товара'
+        verbose_name_plural = 'Варианты товаров'
 
 
 class Review(models.Model):
@@ -102,3 +130,8 @@ class Review(models.Model):
     rating = models.PositiveSmallIntegerField()
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+    class Meta:
+        verbose_name = 'отзыв'
+        verbose_name_plural = 'Отзывы'

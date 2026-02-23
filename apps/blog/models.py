@@ -18,6 +18,10 @@ class Tag(models.Model):
     
     def get_absolute_url(self):
         return reverse("posts_by_tag", kwargs={"slug": self.slug})
+    
+    class Meta:
+        verbose_name = 'тег'
+        verbose_name_plural = 'Теги'
 
 
 class Post(models.Model):
@@ -38,3 +42,7 @@ class Post(models.Model):
     
     def __str__(self):
         return self.title 
+    
+    class Meta:
+        verbose_name = 'пост'
+        verbose_name_plural = 'Посты'
