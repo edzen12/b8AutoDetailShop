@@ -30,13 +30,17 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [ 
+    'jet',
+    'django_ckeditor_5',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mptt',
 
     'apps.about',
     'apps.blog',
@@ -46,8 +50,6 @@ INSTALLED_APPS = [
     'apps.partners',
     'apps.product',
     'apps.users',
-
-    'django_ckeditor_5',
 ]
 
 MIDDLEWARE = [
