@@ -26,6 +26,7 @@ class PlusAbout(models.Model):
     class Meta:
         verbose_name_plural = 'Плюсы компании'
         verbose_name = 'плюс компании'
+        ordering = ['-id']
 
 
 class BlogAbout(models.Model):
@@ -60,7 +61,7 @@ class Testimonials(models.Model):
     desc = models.TextField()
 
     def __str__(self):
-        return self.title
+        return self.name
     
     class Meta:
         verbose_name_plural = 'Отзывы'

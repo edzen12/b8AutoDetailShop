@@ -1,5 +1,82 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Контакты страница</h1>
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">   
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="{% url "home" %}">Главная</a></li>
+                        <li>{{contactInfo.title}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>         
+</div>
+<!--breadcrumbs area end-->
+
+<div class="contact_page_bg">
+    <!--contact map start-->
+    <div class="contact_map">
+        <div class="map-area">
+            {{contactInfo.map|safe}}
+        </div>
+    </div>
+    <!--contact map end-->
+    <div class="container">
+        <!--contact area start-->
+        <div class="contact_area">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="contact_message content">
+                        <h3>{{contactInfo.title}}</h3>    
+                            <p>{{contactInfo.desc}}</p>
+                        <ul>
+                            <li><i class="fa fa-map"></i>  Адрес : {{contactInfo.address}}</li>
+                            <li>
+                                <i class="fa fa-envelope-o"></i> 
+                                <a href="mailto:{{contactInfo.email}}">
+                                    {{contactInfo.email}}
+                                </a>
+                            </li>
+                            <li><i class="fa fa-phone"></i> 
+                                <a href="tel:{{contactInfo.phone}}">{{contactInfo.phone}}</a>
+                            </li>
+                        </ul>             
+                    </div> 
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="contact_message form">
+                        <h3>Tell us your project</h3>   
+                        <form id="contact-form" method="POST"  action="https://htmldemo.net/mazlay/mazlay/assets/mail.php">
+                            <p>  
+                                <label> Your Name (required)</label>
+                                <input name="name" placeholder="Name *" type="text"> 
+                            </p>
+                            <p>       
+                                <label>  Your Email (required)</label>
+                                <input name="email" placeholder="Email *" type="email">
+                            </p>
+                            <p>          
+                                <label>  Subject</label>
+                                <input name="subject" placeholder="Subject *" type="text">
+                            </p>    
+                            <div class="contact_textarea">
+                                <label>  Your Message</label>
+                                <textarea placeholder="Message *" name="message"  class="form-control2" ></textarea>     
+                            </div>   
+                            <button type="submit"> Send</button>  
+                            <p class="form-messege"></p>
+                        </form> 
+
+                    </div> 
+                </div>
+            </div>   
+        </div>
+        <!--contact area end-->
+    </div>
+</div>
 {% endblock content %}
