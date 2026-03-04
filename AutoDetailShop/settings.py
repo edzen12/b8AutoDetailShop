@@ -30,8 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [ 
-    'jet',
+INSTALLED_APPS = [  
     'django_ckeditor_5',
 
     'django.contrib.admin',

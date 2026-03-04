@@ -3,8 +3,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns = [
-    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
+urlpatterns = [ 
     path('admin/', admin.site.urls),
     path("ckeditor5/", include('django_ckeditor_5.urls')),
 
