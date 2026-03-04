@@ -4,6 +4,23 @@ from django.utils.text import slugify
 from django_ckeditor_5.fields import CKEditor5Field
 
 
+class Category(models.Model):
+    name = models.CharField(
+        verbose_name="Название категории", 
+        max_length=100, unique=True)
+    slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        return f"{self.name}"
+    
+    def get_absolute_url(self):
+        return reverse("posts_category", kwargs={"slug": self.slug})
+    
+    class Meta:
+        verbose_name = 'категория'
+        verbose_name_plural = 'Категории'
+
+
 class Tag(models.Model):
     name = models.CharField(verbose_name="Название тега", max_length=100, unique=True)
     slug = models.SlugField(unique=True)
@@ -25,6 +42,9 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, 
+        verbose_name='Категория', null=True)
     tags = models.ManyToManyField(Tag, related_name='posts')
     title = models.CharField(verbose_name="Название поста", max_length=150)
     img = models.ImageField(upload_to='Фото', null=True)

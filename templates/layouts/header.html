@@ -76,13 +76,7 @@
                     <div id="menu" class="text-left ">
                         <ul class="offcanvas_main_menu">
                             <li class="menu-item-has-children active">
-                                <a href="index.html#">Home</a>
-                                <ul class="sub-menu">
-                                    <li><a href="index.html">Home 1</a></li>
-                                    <li><a href="index-2.html">Home 2</a></li>
-                                    <li><a href="index-3.html">Home 3</a></li>
-                                    <li><a href="index-4.html">Home 4</a></li>
-                                </ul>
+                                <a href="{% url "home" %}">Главная</a>
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="index.html#">Shop</a>
@@ -120,17 +114,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children">
-                                <a href="index.html#">blog</a>
-                                <ul class="sub-menu">
-                                    <li><a href="blog.html">blog</a></li>
-                                    <li><a href="blog-details.html">blog details</a></li>
-                                    <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
-                                    <li><a href="blog-sidebar.html">blog sidebar</a></li>
-                                    <li><a href="blog-no-sidebar.html">blog no sidebar</a></li>
-                                </ul>
-
-                            </li>
+                            <li class="menu-item-has-children"><a href="{% url "blog" %}">Блог</a></li>
                             <li class="menu-item-has-children">
                                 <a href="index.html#">pages </a>
                                 <ul class="sub-menu">
@@ -498,14 +482,7 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    <li><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
-                                        <ul class="sub_menu pages">
-                                            <li><a href="blog-details.html">blog details</a></li>
-                                            <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
-                                            <li><a href="blog-sidebar.html">blog sidebar</a></li>
-                                            <li><a href="blog-no-sidebar.html">blog no sidebar</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="{% url "blog" %}">Блог</a></li>
                                     <li><a href="index.html#">pages <i class="fa fa-angle-down"></i></a>
                                         <ul class="sub_menu pages">
                                             <li><a href="about.html">About Us</a></li>
