@@ -1,12 +1,18 @@
-from django.views.generic import TemplateView
+from django.views.generic import ListView, DetailView
 from apps.blog.models import Post
 
 
-class BlogView(TemplateView):
+class BlogView(ListView):
+    model = Post 
     template_name = 'pages/blog.html'
+    context_object_name = 'posts'
+    paginate_by = 6
+    ordering = ['-id']
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["posts"] = Post.objects.all()
-        return context
-    
+
+class BlogDetailView(DetailView):
+    model = Post 
+    template_name = 'pages/blog-detail.html'
+    context_object_name = 'post'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'

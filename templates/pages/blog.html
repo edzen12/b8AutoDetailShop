@@ -34,23 +34,25 @@
                             <article class="single_blog">
                                 <figure>
                                     <div class="blog_thumb">
-                                        <a href="#"><img src="{{post.img.url}}" alt=""></a>
+                                        <a href="{% url "post_detail" post.slug %}">
+                                            <img src="{{post.img.url}}" alt=""></a>
                                     </div>
                                     <figcaption class="blog_content">
-                                        <h4 class="post_title"><a href="#">{{post.title}}</a></h4>
+                                        <h4 class="post_title"><a href="{% url "post_detail" post.slug %}">
+                                            {{post.title}}</a></h4>
                                         <div class="blog_meta">                                        
                                             <span class="author">Автор : 
                                                 <a href="#">{{user.username}}</a> / 
                                             </span>
                                             <span class="meta_date">Дата:  
-                                                <a href="#">{{post.created_at}}</a>
+                                                <a href="#">{{post.created_at|date:'d M Y'}}</a>
                                             </span>
                                         </div>
                                         <div class="blog_desc">
-                                            <p>{{post.description}}</p>
+                                            <p>{{post.description|safe}}</p>
                                         </div>
                                         <footer class="btn_more">
-                                            <a href="blog-details.html"> Читать далее</a>
+                                            <a href="{% url "post_detail" post.slug %}"> Читать далее</a>
                                         </footer>
                                     </figcaption>
                                 </figure>
