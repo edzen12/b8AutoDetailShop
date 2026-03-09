@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 from django_ckeditor_5.fields import CKEditor5Field
 
 
@@ -54,7 +55,7 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = slugify(self.title)
         super().save(*args, **kwargs)
     
     def get_absolute_url(self):
@@ -66,3 +67,20 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'пост'
         verbose_name_plural = 'Посты'
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, 
+        related_name='comments', verbose_name="Пост"
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    parent = models.ForeignKey(
+        'self', on_delete=models.CASCADE, 
+        null=True, blank=True, related_name='replies'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.user} - {self.post}" 
