@@ -13,6 +13,7 @@ class Category(MPTTModel):
         'self', on_delete=models.CASCADE, blank=True,
         null=True, related_name='children', verbose_name="Родитель"
     )
+    is_active = models.BooleanField(default=True, null=True)
 
     class MPTTMeta:
         order_insertion_by = ['name']

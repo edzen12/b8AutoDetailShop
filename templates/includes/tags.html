@@ -1,0 +1,23 @@
+<!--top tags area start-->
+<div class="top_tags_area color_three">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="tags_content">
+                    <ul>
+                        <li><span>Бренды:</span></li>
+                        {% for brand in brands %}
+                        <li>
+                            <a href="#">
+                                <img width='30px' src="{{brand.logo.url}}">
+                                {{brand.name}}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--top tags area end-->

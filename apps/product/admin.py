@@ -6,7 +6,7 @@ from django.utils.html import format_html
 
 @admin.register(Category)
 class Category(DraggableMPTTAdmin):  
-    list_display = ('tree_actions', 'something')
+    list_display = ('tree_actions', 'something', 'is_active')
     list_display_links = ('something',)
     prepopulated_fields = {'slug':('name',)} 
 
