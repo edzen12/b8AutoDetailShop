@@ -326,17 +326,33 @@
                             </div>
                             <div class="categories_menu_toggle">
                                 <ul>
-                                    <li class="menu_item_children"><a href="index.html#">Brake Parts <i class="fa fa-angle-right"></i></a>
+                                    {% for category in categories %}
+                                    <li class="
+                                    {% if category.get_children.exists %}menu_item_children{% endif %}
+                                    {% if forloop.counter > category_limit %}hidden{% endif %}">
+                                        <a href="#">{{category.name}} 
+                                            {% if category.get_children.exists %} 
+                                                <i class="fa fa-angle-right"></i>
+                                            {% endif %}
+                                        </a>
+                                        {% if category.get_children.exists %} 
                                         <ul class="categories_mega_menu">
-                                            <li class="menu_item_children"><a href="index.html#">Dresses</a></li>
+                                            {% for child in category.get_children %}
+                                            <li class="menu_item_children"><a href="#">{{child.name}}</a></li>
+                                            {% endfor %}
                                         </ul>
+                                        {% endif %}
                                     </li>
-                                    
-                                    <li><a href="index.html#"> Lighting</a></li>
-                                    
-                                    <li class="hidden"><a href="https://htmldemo.net/mazlay/mazlay/shop-left-sidebar.html">New Sofas</a></li>
-                                    
-                                    <li><a href="index.html#" id="more-btn"><i class="fa fa-plus" aria-hidden="true"></i> More Categories</a></li>
+                                    {% endfor %} 
+                                
+                                    {% if categories|length > category_limit %}
+                                    <li>
+                                        <a href="#" id="more-btn">
+                                            <i class="fa fa-plus" aria-hidden="true"></i> 
+                                            Еще категории
+                                        </a>
+                                    </li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>

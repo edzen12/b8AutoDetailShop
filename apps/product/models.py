@@ -140,3 +140,17 @@ class Review(models.Model):
     class Meta:
         verbose_name = 'отзыв'
         verbose_name_plural = 'Отзывы'
+
+
+class Slider(models.Model):
+    title = models.CharField(max_length=80, verbose_name="Заголовок")
+    small_text = models.TextField(verbose_name="Текст описание")
+    name_button = models.CharField(max_length=80, verbose_name="Название кнопки")
+    link_button = models.CharField(max_length=255, verbose_name="Ссылка кнопки")
+
+    def __str__(self):
+        return f"{self.title}"
+    
+    class Meta:
+        verbose_name = 'слайдер'
+        verbose_name_plural = 'Слайдеры'
