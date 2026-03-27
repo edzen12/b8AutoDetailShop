@@ -23,10 +23,15 @@ class Category(DraggableMPTTAdmin):
     something.short_description = ('Категории')
 
 
-@admin.register(Brand)
-class Brand(admin.ModelAdmin):
+@admin.register(Marka)
+class Marka(admin.ModelAdmin):
     list_display = ('name',) 
     prepopulated_fields = {'slug':('name',)}
+
+
+@admin.register(CarModel)
+class CarModel(admin.ModelAdmin):
+    list_display = ('name',)  
 
 
 class ProductImageInline(admin.TabularInline):
