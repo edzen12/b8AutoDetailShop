@@ -92,6 +92,12 @@ class Product(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+
+    def get_main_image(self):
+        return self.images.filter(is_main=True).first()
+
+    def get_second_image(self):
+        return self.images.filter(is_main=False).first()
     
     def __str__(self):
         return self.name

@@ -20,20 +20,17 @@
                                 <article class="single_product">
                                     <figure>
                                         <div class="product_thumb">
-                                            {% with main_image=product.images.all|dictsort:"-is_main"|first %}
-                                                {% if main_image %}
-                                                    <a class="primary_img" href="#">
-                                                        <img src="{{main_image.image.url}}" alt="">
-                                                    </a>
-                                                {% endif %}
-                                            {% endwith %}
-                                            {% for img in product.images.all %}
-                                                {% if not img.main_image %}
-                                                    <a class="secondary_img" href="product-details.html">
-                                                        <img src="{{img.image.url}}" alt="">
-                                                    </a> 
-                                                {% endif %}
-                                            {% endfor %}
+                                            {% if product.get_main_image %}
+                                                <a class="primary_img" href="#">
+                                                    <img src="{{ product.get_main_image.image.url }}" alt="">
+                                                </a>
+                                            {% endif %}
+                                            
+                                            {% if product.get_second_image %}
+                                                <a class="secondary_img" href="#">
+                                                    <img src="{{ product.get_second_image.image.url }}" alt="">
+                                                </a>
+                                            {% endif %}
                                             <div class="quick_button">
                                                 <a href="index.html#" data-bs-toggle="modal" data-bs-target="#modal_box"  title="quick view"><i class="icon-eye"></i></a>
                                             </div>
