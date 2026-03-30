@@ -31,7 +31,7 @@ class Marka(admin.ModelAdmin):
 
 @admin.register(CarModel)
 class CarModel(admin.ModelAdmin):
-    list_display = ('name',)  
+    list_display = ('name', 'marka', 'generation', 'year_from')  
 
 
 class ProductImageInline(admin.TabularInline):

@@ -1,7 +1,8 @@
 from django.views.generic import TemplateView
 from apps.partners.models import Partner
 from apps.blog.models import Post
-from apps.product.models import Marka, Category, Slider
+from apps.product.models import Marka, Category, Slider, Product, ProductImage
+from django.db.models import Prefetch
 
 
 class HomeView(TemplateView):
@@ -9,6 +10,10 @@ class HomeView(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        context['products'] = Product.objects.prefetch_related(
+            Prefetch('images', queryset=ProductImage.objects.all())
+        )
 
         context['partners'] = Partner.objects.all()
         context['sliders'] = Slider.objects.all()
