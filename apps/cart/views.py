@@ -22,7 +22,7 @@ class AddToCartView(View):
             item.quantity += 1
             item.save()
 
-        return redirect('cart_detail')
+        return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 class CartDetailView(ListView):
@@ -41,7 +41,6 @@ class CartDetailView(ListView):
 
 class RemoveFromCartView(DeleteView):
     model = CartItem
-    success_url = reverse_lazy('cart_detail')
-
-
-
+    
+    def get_success_url(self):
+        return self.request.META.get('HTTP_REFERER', '/')

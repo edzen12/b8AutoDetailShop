@@ -30,3 +30,4 @@ class HomeView(TemplateView):
         ).prefetch_related('children')
         context['category_limit']=3
         return context
+    
