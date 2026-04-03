@@ -3,6 +3,7 @@ from apps.partners.models import Partner
 from apps.blog.models import Post
 from apps.product.models import Marka, Category, Slider, Product, ProductImage
 from django.db.models import Prefetch
+from apps.cart.utils import get_cart
 
 
 class HomeView(TemplateView):
@@ -11,10 +12,13 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        cart = get_cart(self.request)
+        context['cart'] = cart
+        context['cart_items'] = cart.items.select_related('product')
+
         context['products'] = Product.objects.prefetch_related(
             Prefetch('images', queryset=ProductImage.objects.all())
         )
-
         context['partners'] = Partner.objects.all()
         context['sliders'] = Slider.objects.all()
         context['markas'] = Marka.objects.all()[:8]

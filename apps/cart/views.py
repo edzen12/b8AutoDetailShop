@@ -22,7 +22,7 @@ class AddToCartView(View):
             item.quantity += 1
             item.save()
 
-        return redirect('cart_datail')
+        return redirect('cart_detail')
 
 
 class CartDetailView(ListView):
