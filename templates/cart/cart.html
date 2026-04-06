@@ -6,7 +6,7 @@
         <div class="row">
             <h2 class="text-center">Корзина</h2>
             {% for item in cart.items.all %}
-            <div class="col-lg-6">
+                <div class="col-lg-6">
                     <h3>{{item.product.name}}</h3>
                     <img width="150px" src="{{item.product.get_main_image.image.url}}">
                     <p>{{item.quantity}} шт. x {{item.price}} сом</p>
@@ -16,9 +16,9 @@
                         <button class="btn btn-danger" type="submit">Удалить</button>
                     </form>
                 </div>
-                {% empty %}
-                <p>Корзина пуста</p>
-            </div>
+            {% empty %}
+            <p>Корзина пуста</p>
+        </div>
             {% endfor %}
         <hr class="mt-5">
         <h2 style="background-color: blueviolet; color: white;">Итого: {{cart.total_price}}</h2>

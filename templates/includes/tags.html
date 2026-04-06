@@ -8,7 +8,7 @@
                         <li><span>Бренды:</span></li>
                         {% for brand in markas %}
                         <li>
-                            <a href="#">
+                            <a href="{% url "marka" brand.slug %}">
                                 <img width='30px' src="{{brand.logo.url}}">
                                 {{brand.name}}
                             </a>
