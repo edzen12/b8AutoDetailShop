@@ -66,6 +66,7 @@ class MarkaView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['markas'] = Marka.objects.all()[:8]
         context['marka'] = get_object_or_404(
             Marka, slug=self.kwargs['slug']
         )
