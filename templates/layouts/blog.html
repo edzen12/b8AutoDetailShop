@@ -18,18 +18,25 @@
                     <article class="single_blog">
                         <figure>
                             <div class="blog_thumb">
-                                <a href="#"><img src="{{post.img.url}}" alt=""></a>
+                                <a href="{% url "post_detail" post.slug %}">
+                                    <img src="{{post.img.url}}" alt="">
+                                </a>
                             </div>
                             <figcaption class="blog_content">
-                                <h4><a href="#">{{post.title}}</a></h4> 
+                                <h4><a href="{% url "post_detail" post.slug %}">{{post.title}}</a></h4> 
                                 <div class="post_meta">
-                                    <p><a href="#">{{post.tags.name}}</a> / {{post.created_at}}</p>
+                                    <p>
+                                        {% comment %} {% for tag in posts %}
+                                            <a href="">{{tag.name}}</a>
+                                        {% endfor %}  {% endcomment %}
+                                        / {{post.created_at}}
+                                    </p>
                                 </div>
                                 <div class="post_desc">
-                                    <p>{{post.description}}</p>
+                                    <p>{{post.description|truncatewords:10|safe}}</p>
                                 </div>
                                 <footer class="post_readmore">
-                                    <a href="#">Читать дальше</a>
+                                    <a href="{% url "post_detail" post.slug %}">Читать дальше</a>
                                 </footer>
                             </figcaption>
                         </figure>
