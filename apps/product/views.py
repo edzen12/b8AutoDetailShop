@@ -1,12 +1,44 @@
+from django.views import View
 from django.views.generic import TemplateView, ListView
 from django.db.models import Prefetch
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.db.models import Q 
 
 from apps.cart.utils import get_cart
+from apps.product.utils import get_wishlist
 from apps.partners.models import Partner
 from apps.blog.models import Post
-from apps.product.models import Marka, Category, Slider, Product, ProductImage
+from apps.product.models import (Marka, Category, Slider,Product, 
+                                 ProductImage, WishlistItem) 
+
+
+
+class WishlistView(TemplateView):
+    template_name = 'pages/wishlist.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        wishlist = get_wishlist(self.request)
+        context['wishlist'] = wishlist
+        return context 
+
+
+class ToggleWishlistView(View):
+    def post(self, request, product_id):
+        wishlist = get_wishlist(request)
+        product = get_object_or_404(Product, id=product_id)
+        item = WishlistItem.objects.filter(
+            wishlist=wishlist,
+            product=product
+        ).first()
+        if item:
+            item.delete()
+        else:
+            WishlistItem.objects.create(
+                wishlist=wishlist,
+                product=product,
+            )
+        return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 class SearchView(ListView):
@@ -39,6 +71,9 @@ class HomeView(TemplateView):
         cart = get_cart(self.request)
         context['cart'] = cart
         context['cart_items'] = cart.items.select_related('product')
+
+        wishlist = get_wishlist(self.request)
+        context['wishlist'] = wishlist
 
         context['products'] = Product.objects.prefetch_related(
             Prefetch('images', queryset=ProductImage.objects.all())

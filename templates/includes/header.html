@@ -325,17 +325,25 @@
                      </div>
                      <div class="header_configure_area">
                         <div class="header_wishlist">
-                           <a href="wishlist.html">
+                           <a href="{% url "wishlist" %}">
                               <i class="icon-heart"></i>
-                              <span class="wishlist_count">3</span>
+                              {% if wishlist.total_items > 0 %}
+                              <span class="wishlist_count">{{wishlist.total_items}}</span>
+                              {% endif %}
                            </a>
                         </div>
                         <div class="mini_cart_wrapper">
                            <a href="javascript:void(0)">
                               <i class="icon-shopping-bag2"></i>
-                              <span class="cart_price">$152.00 <i class="ion-ios-arrow-down"></i>
+                              {% if cart.total_price %}
+                              <span class="cart_price">{{cart.total_price}} сом
+                                 <i class="ion-ios-arrow-down"></i>
                               </span>
-                              <span class="cart_count">2</span>
+                              {% endif %}
+
+                              {% if cart.total_quantity > 0 %}
+                              <span class="cart_count">{{cart.total_quantity}}</span>
+                              {% endif %}
                            </a>
                            <!--mini cart-->
                            <div class="mini_cart">
