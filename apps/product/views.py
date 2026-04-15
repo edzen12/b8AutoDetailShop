@@ -7,6 +7,7 @@ from django.db.models import Q
 from apps.cart.utils import get_cart
 from apps.product.utils import get_wishlist
 from apps.partners.models import Partner
+from apps.about.models import MinimalSetting
 from apps.blog.models import Post
 from apps.product.models import (Marka, Category, Slider,Product, 
                                  ProductImage, WishlistItem) 
@@ -88,6 +89,9 @@ class HomeView(TemplateView):
             is_active=True, parent__isnull=True
         ).prefetch_related('children')
         context['category_limit']=3
+
+        context['settings'] = MinimalSetting.objects.latest('id')
+
         return context
 
 
